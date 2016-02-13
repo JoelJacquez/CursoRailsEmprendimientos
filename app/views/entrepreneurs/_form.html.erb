@@ -1,0 +1,66 @@
+<div class="row">
+
+  <%= form_for(@entrepreneur, :html => {class: 'col s12'}) do |f| %>
+  <% if @entrepreneur.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@entrepreneur.errors.count, "error") %> prohibited this entrepreneur from being saved:</h2>
+
+    <ul>
+      <% @entrepreneur.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :title %>
+      <%= f.label :title %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_area :description, class: "materialize-textarea" %>
+      <%= f.label :description %>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <%= image_tag @entrepreneur.image_1.url(:thumb) %>
+    <div class="input-field col s12">
+      <%= f.label :image_1 %><br><br>
+      <%= f.file_field :image_1 %>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= image_tag @entrepreneur.image_2.url(:thumb) %>
+    <div class="input-field col s12">
+      <%= f.label :image_2 %><br><br>
+      <%= f.file_field :image_2 %>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= image_tag @entrepreneur.image_3.url(:thumb) %>
+    <div class="input-field col s12">
+      <%= f.label :image_3 %><br><br>
+      <%= f.file_field :image_3 %>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= image_tag @entrepreneur.image_4.url(:thumb) %>
+    <div class="input-field col s12">
+      <%= f.label :image_4 %><br><br>
+      <%= f.file_field :image_4 %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Guardar', class: 'btn' %>
+  </div>
+  <% end %>
+
+</div>

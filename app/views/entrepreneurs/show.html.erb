@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @entrepreneur.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @entrepreneur.description %>
+</p>
+<p>
+  <strong>Image 1</strong>
+  <%= image_tag @entrepreneur.image_1.url(:medium) %>
+</p>
+<p>
+  <strong>Image 2</strong>
+  <%= image_tag @entrepreneur.image_2.url(:medium) %>
+</p>
+<p>
+  <strong>Image 3</strong>
+  <%= image_tag @entrepreneur.image_3.url(:medium) %>
+</p>
+<p>
+  <strong>Image 4</strong>
+  <%= image_tag @entrepreneur.image_4.url(:medium) %>
+</p>
+
+<%= link_to 'Edit', edit_entrepreneur_path(@entrepreneur) %> |
+<%= link_to 'Back', entrepreneurs_path %>
