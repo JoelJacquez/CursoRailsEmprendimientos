@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :entrepreneurs
+      post 'sign_in' => 'sessions#sign_in'
+      post 'sign_up' => 'sessions#sign_up'
     end
   end
 
