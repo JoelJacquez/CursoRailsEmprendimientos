@@ -4,8 +4,7 @@ class Api::V1::EntrepreneursController < Api::V1::MasterApiController
   only: [:show, :update, :destroy]
 
   def index
-    current_user
-    @entrepreneurs = Entrepreneur.all
+    @entrepreneurs = current_user.entrepreneurs
     render :json => {entrepreneurs: @entrepreneurs}
   end
 
@@ -18,29 +17,21 @@ class Api::V1::EntrepreneursController < Api::V1::MasterApiController
   def create
     # @entrepreneur = Entrepreneur.new(entrepreneur_params)
     @entrepreneur = current_user.entrepreneurs.new(entrepreneur_params)
-
-    respond_to do |format|
-      if @entrepreneur.save
-        format.html { redirect_to @entrepreneur, notice: 'Entrepreneur was successfully created.' }
-        format.json { render :show, status: :created, location: @entrepreneur }
-      else
-        format.html { render :new }
-        format.json { render json: @entrepreneur.errors, status: :unprocessable_entity }
-      end
+    if @entrepreneur.save
+      render :json => {entrepreneur: @entrepreneur}, status: :created
+    else
+      render :json => { errors: @entrepreneur.errors}, status: :unprocessable_entity
     end
+
   end
 
   # PATCH/PUT /api/v1/entrepreneurs/1
   # PATCH/PUT /api/v1/entrepreneurs/1.json
   def update
-    respond_to do |format|
-      if @entrepreneur.update(entrepreneur_params)
-        format.html { redirect_to @entrepreneur, notice: 'Entrepreneur was successfully updated.' }
-        format.json { render :show, status: :ok, location: @entrepreneur }
-      else
-        format.html { render :edit }
-        format.json { render json: @entrepreneur.errors, status: :unprocessable_entity }
-      end
+    if @entrepreneur.update(entrepreneur_params)
+      render :json => {entrepreneur: @entrepreneur}, status: :ok
+    else
+      render :json => { errors: @entrepreneur.errors}, status: :unprocessable_entity
     end
   end
 
