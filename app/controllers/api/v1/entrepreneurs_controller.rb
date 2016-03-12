@@ -4,6 +4,7 @@ class Api::V1::EntrepreneursController < Api::V1::MasterApiController
   only: [:show, :update, :destroy]
 
   def index
+    current_user
     @entrepreneurs = Entrepreneur.all
     render :json => {entrepreneurs: @entrepreneurs}
   end

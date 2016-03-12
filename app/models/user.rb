@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
 
     #update_attribute(:access_token, Manager.digest(access_token))
   end
+  def valid_token?
+    !self.token_expires_at.nil? and self.token_expires_at > DateTime.now
+  end
 
   private
   def digest(string)

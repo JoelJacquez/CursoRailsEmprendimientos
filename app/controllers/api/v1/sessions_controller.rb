@@ -1,8 +1,6 @@
 class Api::V1::SessionsController <  Api::V1::MasterApiController
   def sign_in
-
-    @user = User.find_by(email: user_params[:email])
-    render :json => {user: @user}
+    sign_in_user(user_params)
   end
 
   def sign_up
