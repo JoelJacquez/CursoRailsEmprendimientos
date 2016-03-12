@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+
+
+  get 'profile' => 'profile#index'
+  get 'profile/edit_password'
+  post 'profile/change_password' => 'profile#change_password'
+
   devise_for :users
   resources :entrepreneurs
 
